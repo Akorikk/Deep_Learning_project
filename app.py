@@ -8,15 +8,17 @@ import os
 from tqdm import tqdm
 import pickle
 
-# Load pre-trained ResNet50 model (excluding the top classification layer)
-base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
-base_model.trainable = False  # Freeze layers
 
-# Create a new model with GlobalMaxPooling2D
+base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+base_model.trainable = False  
+
 model = tf.keras.Sequential([
     base_model,
     GlobalMaxPooling2D()
 ])
 
-# Print model summary
 model.summary()
+
+
+
+
